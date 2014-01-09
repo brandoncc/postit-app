@@ -1,0 +1,23 @@
+<h2>Create a new category</h2>
+
+<% if @category.errors.any? %>
+  <h4><%= pluralize(@category.errors.count, 'error') %> prohibited this category from being saved:</h4>
+  <ul>
+    <% @category.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @category do |f| %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<%= link_to 'Back to posts', posts_path %>
