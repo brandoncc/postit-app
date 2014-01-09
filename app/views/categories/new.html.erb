@@ -1,13 +1,6 @@
 <h2>Create a new category</h2>
 
-<% if @category.errors.any? %>
-  <h4><%= pluralize(@category.errors.count, 'error') %> prohibited this category from being saved:</h4>
-  <ul>
-    <% @category.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= render partial: 'shared/form_errors', locals: {object: @category} %>
 
 <%= form_for @category do |f| %>
   <p>
