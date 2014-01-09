@@ -19,7 +19,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to post_path(@post.id)
     else
-      render 'new'
+      render :new
     end
   end
 
