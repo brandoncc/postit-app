@@ -1,7 +1,4 @@
-<h2><%= link_to @post.title, @post.url.downcase =~ /^https?:\/\// ? @post.url : 'http://' + @post.url %></h2>
-<hr />
-<p>
-  <%= @post.description %>
-</p>
-<hr />
+<%= render 'shared/post_details', locals: {post: @post} %>
+
+<p>&nbsp;</p>
 <%= render partial: 'comments/new' %>
