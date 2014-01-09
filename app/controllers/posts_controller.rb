@@ -30,7 +30,7 @@ class PostsController < ApplicationController
     @post.update_attributes(post_params)
     @post.save
 
-    render :show
+    redirect_to(post_path(@post))
   end
 
   private
