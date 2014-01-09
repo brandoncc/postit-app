@@ -1,0 +1,11 @@
+<h4><%= @post.title %></h4>
+
+<p>
+  URL: <%= @post.url %>
+</p>
+
+<p>
+  description: <%= @post.description %>
+</p>
+
+<%= link_to 'Edit post', edit_post_path(@post) %>
