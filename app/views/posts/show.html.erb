@@ -1,12 +1,7 @@
-<h4><%= @post.title %></h4>
-
+<h2><%= link_to @post.title, @post.url.downcase =~ /^https?:\/\// ? @post.url : 'http://' + @post.url %></h2>
+<hr />
 <p>
-  URL: <%= @post.url %>
+  <%= @post.description %>
 </p>
-
-<p>
-  description: <%= @post.description %>
-</p>
-
-<%= link_to 'Edit post', edit_post_path(@post) %>
+<hr />
 <%= render partial: 'comments/new' %>
