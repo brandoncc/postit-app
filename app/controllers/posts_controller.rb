@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update]
-  before_action :set_all_categories, except: [:index, :show]
 
   def index
     @posts = Post.all
@@ -16,7 +15,6 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    set_selected_categories
     @post.creator = User.first # TODO: change after we implement authentication
 
     if @post.save
@@ -31,8 +29,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    set_selected_categories
-
     if @post.update(post_params)
       flash[:notice] = 'Your post was updated successfully.'
       redirect_to(post_path(@post))
@@ -60,6 +56,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :url, :description)
+    params.require(:post).permit(:title, :url, :description, category_ids: [])
   end
 end
