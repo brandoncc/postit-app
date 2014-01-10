@@ -3,6 +3,24 @@
     <%= link_to "Postit!", root_path, :class => 'brand' %>
   </li>
   <li>
-    <%= link_to 'link', '' %>
+    <%= link_to 'All Posts', posts_path %>
   </li>
 </ul>
+<div class="btn-group nav_item">
+  <a class="btn btn-small dropdown-toggle"
+     data-toggle="dropdown"
+     href="#">
+    Categories
+    <b class="caret"></b>
+  </a>
+  <ul class="dropdown-menu">
+    <% Category.order("lower(name) ASC").all.each do |category| %>
+      <li><a href="<%= category_path(category.id) %>"><%= "#{category.name}" %></a></li>
+    <% end %>
+    <li class="divider"></li>
+    <li><a href="<%= new_category_path %>"><i class="icon-plus"></i> New Category</a></li>
+  </ul>
+</div>
+<div class="nav_item">
+  <a class="btn btn-small btn-success" href="<%= new_post_path %>">New Post</a>
+</div>
