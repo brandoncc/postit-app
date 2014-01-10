@@ -1,5 +1,10 @@
 <div class="row">
-  <div class="span8">
-
+  <div class="span8 well comment">
+    <p>
+      "<span class="comment-body"><%= "#{comment.body}" %></span>"<br/>
+      <span class="posted-at">
+        posted <%= nice_time(comment.created_at) %>
+      </span>
+    </p>
   </div>
 </div>
