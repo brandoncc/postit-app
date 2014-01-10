@@ -3,7 +3,7 @@
     <p>
       "<span class="comment-body"><%= "#{comment.body}" %></span>"<br/>
       <span class="posted-at">
-        posted <%= nice_time(comment.created_at) %>
+        posted by <%= comment.creator.username %> <%= nice_time(comment.created_at) %>
       </span>
     </p>
   </div>
