@@ -1,4 +1,19 @@
-<%= render 'shared/post_details', locals: {post: @post} %>
+<div class="row">
+  <div class="span12">
+    <h3 class="pull-left"><%= link_to @post.title, fix_url(@post.url) %></h3>
+    <div class="pull-right">[<a href="<%= edit_post_path(@post) %>">Edit this post</a>]</div>
+  </div>
+</div>
+<hr/>
+<p>
+  <%= @post.description %>
+</p>
+<hr/>
+<p>
+  <% @post.categories.each do |category| %>
+    <%= render partial: 'shared/category_link', object: category, as: :category %>
+  <% end %>
+</p>
 
 <p>&nbsp;</p>
 <%= render partial: 'comments/new' %>
