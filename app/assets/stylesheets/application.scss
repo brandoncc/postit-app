@@ -62,3 +62,9 @@ div.comment {
     font-style: italic;
   }
 }
+
+div.category-check-boxes {
+  max-height: 100px;
+  width: 180px;
+  overflow: scroll;
+}
