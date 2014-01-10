@@ -53,3 +53,13 @@ a.category-link {
   background-color: brown;
 }
 
+div.comment {
+  span.comment-body {
+    font-weight: normal;
+  }
+
+  span.posted-at {
+    font-size: 0.8em;
+    font-style: italic;
+  }
+}
