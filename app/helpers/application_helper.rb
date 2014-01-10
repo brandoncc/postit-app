@@ -7,9 +7,9 @@ module ApplicationHelper
     pretty_time = pretty_timeframes(time)
 
     if pretty_time == ''
-      "#{time.strftime('%a, %b %e, %Y at %l:%M %P')}"
+      "on #{time.strftime('%a, %b %e, %Y at %l:%M %P')}"
     else
-      "#{pretty_time} (#{time.strftime('%a, %b %e, %Y at %l:%M %P')})"
+      "#{pretty_time}"
     end
   end
 
@@ -23,17 +23,16 @@ module ApplicationHelper
       time_string = "about #{pluralize((seconds_passed / (60)), 'minute')} ago"
     elsif seconds_passed >= 60*60 and seconds_passed < 60*60*24
       time_string = "about #{pluralize(seconds_passed / (60*60), 'hour')} ago"
-    elsif seconds_passed >= 60*60*24 and seconds_passed < 60*60*24*365
-      time_string = "about #{pluralize(seconds_passed / (60*60*24), 'month')} ago"
+    elsif seconds_passed >= 60*60*24 and seconds_passed <= 60*60*24*31
+      time_string = "about #{pluralize(seconds_passed / (60*60*24), 'day')} ago"
     else
       time_string = ''
     end
 
     time_string.
         gsub(/^about 1 second/, 'a second').
-        gsub(/^1 minute/, 'a minute').
-        gsub(/^1 hour/, 'an hour').
-        gsub(/^1 day/, 'yesterday').
-        gsub(/^1 month/, 'a month')
+        gsub(/^about 1 minute/, 'about a minute').
+        gsub(/^about 1 hour/, 'about an hour').
+        gsub(/^about 1 day ago/, 'yesterday')
   end
 end
