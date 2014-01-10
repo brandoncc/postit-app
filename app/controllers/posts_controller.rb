@@ -30,12 +30,14 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.update_attributes(post_params)
     set_selected_categories
-    @post.save
 
-    redirect_to(post_path(@post))
+    if @post.update(post_params)
       flash[:notice] = 'Your post was updated successfully.'
+      redirect_to(post_path(@post))
+    else
+      render :edit
+    end
   end
 
   private
