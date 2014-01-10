@@ -1,0 +1,19 @@
+<%
+   button_class = case category.id % 7
+                  when 0
+                    "btn-primary"
+                  when 1
+                    "btn-info"
+                  when 2
+                    "btn-success"
+                  when 3
+                    "btn-warning"
+                  when 4
+                    "btn-danger"
+                  when 5
+                    "btn-inverse"
+                  when 6
+                    ""
+                  end
+%>
+<%= link_to category.name, category_path(category), class: "category-link btn #{button_class}" %>
