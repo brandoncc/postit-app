@@ -19,6 +19,7 @@ class PostsController < ApplicationController
     set_selected_categories
 
     if @post.save
+      flash[:notice] = 'Your post was created successfully.'
       redirect_to post_path(@post.id)
     else
       render :new
@@ -34,6 +35,7 @@ class PostsController < ApplicationController
     @post.save
 
     redirect_to(post_path(@post))
+      flash[:notice] = 'Your post was updated successfully.'
   end
 
   private
