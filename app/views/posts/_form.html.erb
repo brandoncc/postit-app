@@ -1,30 +1,28 @@
 <%= render 'shared/form_errors', object: @post %>
 <%= form_for @post do |f| %>
-  <p>
+  <div class="control-group">
     <%= f.label :title %>
     <%= f.text_field :title %>
-  </p>
+  </div>
 
-  <p>
+  <div class="control-group">
     <%= f.label :url %>
     <%= f.text_field :url %>
-  </p>
-
-  <p>
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </p>
-
-  <p>
-    <%= label_tag nil, 'Post categories' %>
-  <div class="category-check-boxes well">
-    <%= f.collection_check_boxes :category_ids, Category.order('lower(name) asc').all, :id, :name do |c| %>
-      <%= c.label(class: "checkbox") { c.check_box(class: 'checkbox') + c.text } %>
-    <% end %>
   </div>
-  </p>
 
-  <p>
-    <%= f.submit class: 'btn btn-primary' %>
-  </p>
+  <div class="control-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, rows: 5 %>
+  </div>
+
+  <div class="control-group">
+    <%= label_tag nil, 'Post categories' %>
+    <div class="category-check-boxes well">
+      <%= f.collection_check_boxes :category_ids, Category.order('lower(name) asc').all, :id, :name do |c| %>
+        <%= c.label(class: "checkbox") { c.check_box(class: 'checkbox') + c.text } %>
+      <% end %>
+    </div>
+  </div>
+
+  <%= f.submit class: 'btn btn-primary' %>
 <% end %>

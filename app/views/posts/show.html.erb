@@ -1,5 +1,7 @@
-<h4 class="pull-left"><%= link_to @post.title, fix_url(@post.url) %></h4>
-<div class="pull-right">[<a href="<%= edit_post_path(@post) %>">Edit this post</a>]</div>
+<div class="pull-right">
+  [<a href="<%= edit_post_path(@post) %>">Edit this post</a>]
+</div>
+<h4><%= link_to @post.title, fix_url(@post.url) %></h4>
 <hr/>
 <p>
   <%= @post.description %>
@@ -13,4 +15,5 @@
 
 <p>&nbsp;</p>
 <%= render 'comments/new' %>
+<h5>Comments:</h5>
 <%= render partial: 'comments/show', collection: @post.comments, as: :comment %>

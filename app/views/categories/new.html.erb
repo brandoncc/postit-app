@@ -3,12 +3,10 @@
 <%= render 'shared/form_errors', object: @category %>
 
 <%= form_for @category do |f| %>
-  <p>
+  <div class="control-group">
     <%= f.label :name %>
     <%= f.text_field :name %>
-  </p>
+  </div>
 
-  <p>
-    <%= f.submit class: 'btn btn-primary' %>
-  </p>
+  <%= f.submit class: 'btn btn-primary' %>
 <% end %>
