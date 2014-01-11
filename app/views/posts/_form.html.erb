@@ -1,5 +1,4 @@
 <%= render partial: 'shared/form_errors', locals: { object: @post } %>
-
 <%= form_for @post do |f| %>
   <p>
     <%= f.label :title %>
@@ -17,21 +16,12 @@
   </p>
 
   <p>
-    <% @categories.each_with_index do |cat, index| %>
-      <% if @post.category_ids.include?(cat.id) %>
-        <% if index > 0 %>
-          <br />
-        <% end %>
-        <%= check_box_tag 'post[categories][]', "#{cat.id}", 'checked', id: "post_category_#{cat.id}" %>
-        <%= label_tag "post_category_#{cat.id}", "#{cat.name}", class: "checkbox inline" %>
-      <% else %>
-        <% if index > 0 %>
-          <br />
-        <% end %>
-        <%= check_box_tag 'post[categories][]', "#{cat.id}", nil, id: "post_category_#{cat.id}" %>
-        <%= label_tag "post_category_#{cat.id}", "#{cat.name}", class: "checkbox inline" %>
-      <% end %>
+    <%= label_tag nil, 'Post categories' %>
+  <div class="category-check-boxes well">
+    <%= f.collection_check_boxes :category_ids, Category.order('lower(name) asc').all, :id, :name do |c| %>
+      <%= c.label(class: "checkbox") { c.check_box(class: 'checkbox') + c.text } %>
     <% end %>
+  </div>
   </p>
 
   <p>
