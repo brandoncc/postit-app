@@ -1,6 +1,6 @@
 <%= render 'shared/content_title', title: 'Create a new category' %>
 
-<%= render partial: 'shared/form_errors', locals: {object: @category} %>
+<%= render 'shared/form_errors', object: @category %>
 
 <%= form_for @category do |f| %>
   <p>

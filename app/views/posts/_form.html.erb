@@ -1,4 +1,4 @@
-<%= render partial: 'shared/form_errors', locals: { object: @post } %>
+<%= render 'shared/form_errors', object: @post %>
 <%= form_for @post do |f| %>
   <p>
     <%= f.label :title %>
