@@ -25,7 +25,7 @@
   </ul>
 
   <% if @tab == 'comments' %>
-    <%= render partial: 'comments/show', collection: @user.comments, as: :comment %>
+    <%= render partial: 'comments/show', collection: @user.comments, as: :comment, locals: { show_post_link: true } %>
   <% else %>
     <%= render partial: 'shared/post', collection: @user.posts, as: :post %>
   <% end %>

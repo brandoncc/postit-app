@@ -1,7 +1,11 @@
 <div class="row">
   <div class="span8 well comment">
     <p>
-      "<span class="comment-body"><%= "#{comment.body}" %></span>"<br/>
+      "<span class="comment-body"><%= "#{comment.body}" %></span>"
+      <% if defined?(show_post_link) && show_post_link == true %>
+        on <%= link_to comment.post.title, post_path(comment.post) %>
+      <% end %>
+      <br/>
       <span class="posted-at">
         posted by <%= comment.creator.username %> <%= nice_time(comment.created_at) %>
       </span>
