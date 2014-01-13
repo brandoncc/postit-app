@@ -1,6 +1,8 @@
-<div class="pull-right">
-  [<a href="<%= edit_post_path(@post) %>">Edit this post</a>]
-</div>
+<% if !@current_user.nil? && @post.creator == @current_user %>
+  <div class="pull-right">
+    [<a href="<%= edit_post_path(@post) %>">Edit this post</a>]
+  </div>
+<% end %>
 <h4><%= link_to @post.title, fix_url(@post.url) %></h4>
 <hr/>
 <p>
@@ -14,6 +16,6 @@
 </p>
 
 <p>&nbsp;</p>
-<%= render 'comments/new' %>
+<%= render 'comments/new' unless @current_user.nil? %>
 <h5>Comments:</h5>
 <%= render partial: 'comments/show', collection: @post.comments, as: :comment %>

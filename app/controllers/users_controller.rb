@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_login, except: :new
+
   def new
     @user = User.new
   end
@@ -28,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(1)
+    @user = User.find(params[:id])
     @tab = params[:tab].nil? ? 'posts' : 'comments'
   end
 

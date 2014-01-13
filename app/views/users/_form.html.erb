@@ -1,19 +1,24 @@
+<div class="well">
+  <%= form_for @user do |f| %>
+    <div class="control-group">
+      <%= f.label :username %>
+      <%= f.text_field :username %>
+    </div>
 
-<%= form_for @user do |f| %>
-  <div class="control-group">
-    <%= f.label :username %>
-    <%= f.text_field :username %>
-  </div>
+    <div class="control-group">
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
 
-  <div class="control-group">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
+    <div class="control-group">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </div>
 
-  <div class="control-group">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-
-  <%= f.submit class: 'btn btn-primary' %>
-<% end %>
+    <% if @user.new_record? %>
+      <%= f.submit 'Create user', class: 'btn btn-primary' %>
+    <% else %>
+      <%= f.submit 'Update user', class: 'btn btn-primary' %>
+    <% end %>
+  <% end %>
+</div>
