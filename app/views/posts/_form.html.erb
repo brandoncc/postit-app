@@ -24,5 +24,9 @@
     </div>
   </div>
 
-  <%= f.submit class: 'btn btn-primary' %>
+  <% if @user.new_record? %>
+    <%= f.submit 'Create post', class: 'btn btn-primary' %>
+  <% else %>
+    <%= f.submit 'Update post', class: 'btn btn-primary' %>
+  <% end %>
 <% end %>
