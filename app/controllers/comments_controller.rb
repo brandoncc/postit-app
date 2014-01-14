@@ -15,16 +15,15 @@ class CommentsController < ApplicationController
   end
 
   def vote
-    if params[:id] && params[:upvote]
-      comment = Comment.find(params[:id])
-      vote  = current_user.votes.build(voteable: comment, value: params[:upvote] == 'true' ? 1 : -1)
+    comment = Comment.find(params[:id])
+    vote  = current_user.votes.build(voteable: comment, value: params[:upvote] == 'true' ? 1 : -1)
 
-      if vote.save
-        flash[:notice] = 'Your vote has been recorded.'
-      else
-        flash[:error] = 'You have already voted on this comment.'
-      end
+    if vote.save
+      flash[:notice] = 'Your vote has been recorded.'
+    else
+      flash[:error] = 'You have already voted on this comment.'
     end
+
     redirect_to :back
   end
 

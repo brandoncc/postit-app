@@ -39,16 +39,14 @@ class PostsController < ApplicationController
   end
 
   def vote
-    if params[:id] && params[:upvote]
-      post = Post.find(params[:id])
-      vote  = current_user.votes.build(voteable: post, value: params[:upvote] == 'true' ? 1 : -1)
+    vote  = current_user.votes.build(voteable: @post, value: params[:upvote] == 'true' ? 1 : -1)
 
-      if vote.save
-        flash[:notice] = 'Your vote has been recorded.'
-      else
-        flash[:error] = 'You have already voted on this post.'
-      end
+    if vote.save
+      flash[:notice] = 'Your vote has been recorded.'
+    else
+      flash[:error] = 'You have already voted on this post.'
     end
+
     redirect_to :back
   end
 
