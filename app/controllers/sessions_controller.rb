@@ -4,11 +4,12 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(username: login_params[:username])
+    user = User.find_by(username: login_params[:username])
 
-    if !@user.nil? && @user.authenticate(login_params[:password])
-      session[:user_id] = @user.id
-      redirect_to posts_path
+    if user && user.authenticate(login_params[:password])
+      session[:user_id] = user.id
+      flash[:notice] = 'You were logged in successfully.'
+      redirect_to root_path
     else
       flash[:error] = 'Username/password combination do not match.'
       render template: 'sessions/new', locals: { username: login_params[:username] }
