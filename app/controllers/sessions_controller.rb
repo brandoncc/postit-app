@@ -11,8 +11,8 @@ class SessionsController < ApplicationController
       flash[:notice] = 'You were logged in successfully.'
       redirect_to root_path
     else
-      flash[:error] = 'Username/password combination do not match.'
-      render template: 'sessions/new', locals: { username: login_params[:username] }
+      flash.now[:error] = 'Username/password combination do not match.'
+      render :new
     end
   end
 
