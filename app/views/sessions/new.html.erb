@@ -2,13 +2,13 @@
 <div class="well">
   <%= form_tag do %>
     <div class="control-group">
-      <%= label_tag 'login[username]', 'Username' %>
-      <%= text_field_tag 'login[username]', "#{username}" %>
+      <%= label_tag :username, 'Username' %>
+      <%= text_field_tag :username, "#{params['username'] || ''}" %>
     </div>
 
     <div class="control-group">
-      <%= label_tag 'login[password]', 'Password' %>
-      <%= password_field :login, :password %>
+      <%= label_tag :password, 'Password' %>
+      <%= password_field_tag :password %>
     </div>
 
     <%= submit_tag 'Login', class: 'btn btn-primary' %>
