@@ -1,16 +1,15 @@
 PostitTemplate::Application.routes.draw do
   root to: 'posts#index'
 
-  concern :voteable do
-    get 'vote'
-  end
-
   resources :posts, except: :destroy do
-    concerns :voteable
+    member do
+      post 'vote'
+    end
+
     resources :comments, only: :create
   end
 
-  get 'comments/:comment_id/vote', to: 'comments#vote', as: 'comment_vote'
+  post 'comments/:comment_id/vote', to: 'comments#vote', as: 'comment_vote'
 
   resources :categories, only: [:new, :create, :show]
 

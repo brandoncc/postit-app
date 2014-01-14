@@ -1,7 +1,7 @@
 <div class="row">
   <div class="well span1 text-center">
     <% if logged_in? %>
-      <%= link_to post_vote_path(post, upvote: true), class: 'vote-icon' do %>
+      <%= link_to post_vote_path(post, upvote: true), method: :post, class: 'vote-icon' do %>
         <i class="icon-thumbs-up"></i>
       <% end %>
       <br/>
@@ -9,7 +9,7 @@
     <%= pluralize(post.votes.sum(:value), 'vote') %>
     <% if logged_in? %>
       <br/>
-      <%= link_to post_vote_path(post, upvote: false), class: 'vote-icon' do %>
+      <%= link_to post_vote_path(post, upvote: false), method: :post, class: 'vote-icon' do %>
         <i class="icon-thumbs-down"></i>
       <% end %>
     <% end %>
