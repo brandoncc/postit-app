@@ -1,10 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    if @current_user.nil?
-      render template: 'sessions/new', locals: { username: '' }
-    else
-      redirect_to user_path(user)
-    end
+    redirect_to user_path(current_user) if logged_in?
   end
 
   def create
