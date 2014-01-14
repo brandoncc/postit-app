@@ -38,6 +38,18 @@ class PostsController < ApplicationController
     end
   end
 
+  def vote
+    if params[:post_id] && params[:upvote]
+      post = Post.find(params[:post_id])
+      vote  = current_user.votes.build(voteable: post, value: params[:upvote] == 'true' ? 1 : -1)
+
+      unless vote.save
+        flash[:error] = 'You have already voted on this post.'
+      end
+    end
+    redirect_to :back
+  end
+
   private
   def set_selected_categories
     selected_categories = params[:post][:categories]

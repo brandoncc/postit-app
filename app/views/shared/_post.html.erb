@@ -1,19 +1,36 @@
-<div class="well">
-  <div class="post">
-    <h4><%= link_to post.title, fix_url(post.url) %></h4>
-
-    <p>
-      <%= post.description %>
-    </p>
-
-    <p>
-      <%= link_to pluralize(post.comments.count, 'comment'), post_path(post) %>
-    </p>
-
-    <p>
-      <% post.categories.each_with_index do |category, index| %>
-        <%= render partial: 'shared/category_link', object: category, as: :category %>
+<div class="row">
+  <div class="well span1 text-center">
+    <% if logged_in? %>
+      <%= link_to post_vote_path(post, upvote: true), class: 'vote-icon' do %>
+        <i class="icon-thumbs-up"></i>
       <% end %>
-    </p>
+      <br/>
+    <% end %>
+    <%= pluralize(post.votes.sum(:value), 'vote') %>
+    <% if logged_in? %>
+      <br/>
+      <%= link_to post_vote_path(post, upvote: false), class: 'vote-icon' do %>
+        <i class="icon-thumbs-down"></i>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="well span10">
+    <div class="post">
+      <h4><%= link_to post.title, fix_url(post.url) %></h4>
+
+      <p>
+        <%= post.description %>
+      </p>
+
+      <p>
+        <%= link_to pluralize(post.comments.count, 'comment'), post_path(post) %>
+      </p>
+
+      <p>
+        <% post.categories.each_with_index do |category, index| %>
+          <%= render partial: 'shared/category_link', object: category, as: :category %>
+        <% end %>
+      </p>
+    </div>
   </div>
 </div>
