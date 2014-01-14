@@ -6,7 +6,7 @@
       <% end %>
       <br/>
     <% end %>
-    <%= pluralize(comment.votes.sum(:value), 'vote') %>
+    <%= pluralize(comment.votes_count, 'vote') %>
     <% if logged_in? %>
       <br/>
       <%= link_to vote_comment_path(comment, upvote: false), method: :post, class: 'vote-icon' do %>

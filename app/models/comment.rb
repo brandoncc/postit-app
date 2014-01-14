@@ -4,4 +4,8 @@ class Comment < ActiveRecord::Base
   has_many :votes, as: :voteable
 
   validates_presence_of :body
+
+  def votes_count
+    votes.sum(:value)
+  end
 end

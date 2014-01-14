@@ -6,4 +6,8 @@ class Post < ActiveRecord::Base
   has_many :votes, as: :voteable
 
   validates_presence_of :title, :url, :description
+
+  def votes_count
+    votes.sum(:value)
+  end
 end
