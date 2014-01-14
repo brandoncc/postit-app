@@ -19,7 +19,9 @@ class CommentsController < ApplicationController
       comment = Comment.find(params[:comment_id])
       vote  = current_user.votes.build(voteable: comment, value: params[:upvote] == 'true' ? 1 : -1)
 
-      unless vote.save
+      if vote.save
+        flash[:notice] = 'Your vote has been recorded.'
+      else
         flash[:error] = 'You have already voted on this comment.'
       end
     end
