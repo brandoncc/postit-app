@@ -1,4 +1,4 @@
-<% if !@current_user.nil? && @post.creator == @current_user %>
+<% if logged_in? && @post.creator == current_user %>
   <div class="pull-right">
     [<a href="<%= edit_post_path(@post) %>">Edit this post</a>]
   </div>
@@ -16,6 +16,6 @@
 </p>
 
 <p>&nbsp;</p>
-<%= render 'comments/new' unless @current_user.nil? %>
+<%= render 'comments/new' if logged_in? %>
 <h5>Comments:</h5>
 <%= render partial: 'comments/show', collection: @post.comments, as: :comment %>

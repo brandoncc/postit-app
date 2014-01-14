@@ -17,39 +17,37 @@
     <% Category.order("lower(name) ASC").all.each do |category| %>
       <li><a href="<%= category_path(category.id) %>"><%= "#{category.name}" %></a></li>
     <% end %>
-    <% unless @current_user.nil? %>
+    <% if logged_in? %>
       <li class="divider"></li>
       <li><a href="<%= new_category_path %>"><i class="icon-plus"></i> New Category</a></li>
     <% end %>
   </ul>
 </div>
-<% unless @current_user.nil? %>
+<% if logged_in? %>
   <div class="nav_item">
     <a class="btn btn-small btn-success" href="<%= new_post_path %>">New Post</a>
   </div>
-<% end %>
-<% if @current_user.nil? %>
   <ul class="nav pull-right">
     <li>
-      <div class="nav_item">
-        <a class="btn btn-small btn-success" href="<%= login_path %>">Login</a>
-        <a class="btn btn-small btn-info" href="<%= new_user_path %>">Register</a>
+      <div class="btn-group nav_item">
+        <a class="btn btn-small dropdown-toggle" href="#" data-toggle="dropdown">
+          <%= current_user.username %>
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="<%= edit_user_path(current_user) %>"><i class="icon-pencil"></i> edit profile</a></li>
+          <li><a href="<%= user_path(current_user) %>"><i class="icon-user"></i> view profile</a></li>
+          <li><a href="<%= logout_path %>"><i class="icon-circle-arrow-left"></i> logout</a></li>
+        </ul>
       </div>
     </li>
   </ul>
 <% else %>
   <ul class="nav pull-right">
     <li>
-      <div class="btn-group nav_item">
-        <a class="btn btn-small dropdown-toggle" href="#" data-toggle="dropdown">
-          <%= @current_user.username %>
-          <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu">
-          <li><a href="<%= edit_user_path(@current_user) %>"><i class="icon-pencil"></i> edit profile</a></li>
-          <li><a href="<%= user_path(@current_user) %>"><i class="icon-user"></i> view profile</a></li>
-          <li><a href="<%= logout_path %>"><i class="icon-circle-arrow-left"></i> logout</a></li>
-        </ul>
+      <div class="nav_item">
+        <a class="btn btn-small btn-success" href="<%= login_path %>">Login</a>
+        <a class="btn btn-small btn-info" href="<%= register_path %>">Register</a>
       </div>
     </li>
   </ul>
