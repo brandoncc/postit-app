@@ -15,8 +15,8 @@ class CommentsController < ApplicationController
   end
 
   def vote
-    if params[:comment_id] && params[:upvote]
-      comment = Comment.find(params[:comment_id])
+    if params[:id] && params[:upvote]
+      comment = Comment.find(params[:id])
       vote  = current_user.votes.build(voteable: comment, value: params[:upvote] == 'true' ? 1 : -1)
 
       if vote.save

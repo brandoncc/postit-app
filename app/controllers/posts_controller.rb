@@ -39,8 +39,8 @@ class PostsController < ApplicationController
   end
 
   def vote
-    if params[:post_id] && params[:upvote]
-      post = Post.find(params[:post_id])
+    if params[:id] && params[:upvote]
+      post = Post.find(params[:id])
       vote  = current_user.votes.build(voteable: post, value: params[:upvote] == 'true' ? 1 : -1)
 
       if vote.save
