@@ -13,6 +13,10 @@ module ApplicationHelper
     end
   end
 
+  def pretty_votes(object)
+    pluralize(object.votes_count, 'vote') if !!object
+  end
+
   private
   def pretty_timeframes(time)
     seconds_passed = (Time.now - time).ceil

@@ -1,15 +1,17 @@
 <div class="row">
   <div class="span1 well text-center">
     <% if logged_in? %>
-      <%= link_to vote_post_comment_path(comment.post, comment, upvote: true), method: :post, class: 'vote-icon' do %>
+      <%= link_to vote_post_comment_path(comment.post, comment, upvote: true),
+                  method: :post, remote: true, class: 'vote-icon' do %>
         <i class="icon-thumbs-up"></i>
       <% end %>
       <br/>
     <% end %>
-    <%= pluralize(comment.votes_count, 'vote') %>
+    <span id="comment_<%= comment.id %>_votes"><%= pretty_votes(comment) %></span>
     <% if logged_in? %>
       <br/>
-      <%= link_to vote_post_comment_path(comment.post, comment, upvote: false), method: :post, class: 'vote-icon' do %>
+      <%= link_to vote_post_comment_path(comment.post, comment, upvote: false),
+                  method: :post, remote: true, class: 'vote-icon' do %>
         <i class="icon-thumbs-down"></i>
       <% end %>
     <% end %>

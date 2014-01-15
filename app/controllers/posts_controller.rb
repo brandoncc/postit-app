@@ -40,15 +40,20 @@ class PostsController < ApplicationController
   end
 
   def vote
-    vote  = current_user.votes.build(voteable: @post, value: params[:upvote] == 'true' ? 1 : -1)
+    vote = current_user.votes.build(voteable: @post, value: params[:upvote] == 'true' ? 1 : -1)
 
     if vote.save
+      success        = true
       flash[:notice] = 'Your vote has been recorded.'
     else
+      success       = false
       flash[:error] = 'You have already voted on this post.'
     end
 
-    redirect_to :back
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js { render locals: { post: @post, vote_success: success } }
+    end
   end
 
   private
