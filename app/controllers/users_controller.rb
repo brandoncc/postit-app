@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_login, except: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update]
+  before_action :require_same_user, only: [:edit, :update]
 
   def new
     @user = User.new
@@ -41,5 +42,12 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def require_same_user
+    unless @user == current_user
+      flash[:error] = 'You do not have access to that.'
+      redirect_to root_path
+    end
   end
 end
