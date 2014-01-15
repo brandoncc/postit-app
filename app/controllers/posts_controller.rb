@@ -40,19 +40,27 @@ class PostsController < ApplicationController
   end
 
   def vote
-    vote = current_user.votes.build(voteable: @post, value: params[:upvote] == 'true' ? 1 : -1)
-
-    if vote.save
-      success        = true
-      flash[:notice] = 'Your vote has been recorded.'
-    else
-      success       = false
-      flash[:error] = 'You have already voted on this post.'
-    end
+    vote = current_user.votes.create(voteable: @post, value: params[:upvote] == 'true' ? 1 : -1)
 
     respond_to do |format|
-      format.html { redirect_to :back }
-      format.js { render locals: { post: @post, vote_success: success } }
+      format.html do
+        if vote.valid?
+          flash[:notice] = 'Your vote has been recorded.'
+        else
+          flash[:error] = 'You have already voted on this post.'
+        end
+
+        redirect_to :back
+      end
+      format.js do
+        if vote.valid?
+          success = true
+        else
+          success = false
+        end
+
+        render locals: { post: @post, vote_success: success }
+      end
     end
   end
 
@@ -83,5 +91,9 @@ class PostsController < ApplicationController
       flash[:error] = 'You do not have access to that.'
       redirect_to root_path
     end
+  end
+
+  def to_param
+    self.slug
   end
 end
