@@ -75,7 +75,7 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.find_by(slug: params[:id])
   end
 
   def set_all_categories
@@ -91,9 +91,5 @@ class PostsController < ApplicationController
       flash[:error] = 'You do not have access to that.'
       redirect_to root_path
     end
-  end
-
-  def to_param
-    self.slug
   end
 end
