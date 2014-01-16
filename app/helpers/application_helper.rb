@@ -4,6 +4,7 @@ module ApplicationHelper
   end
 
   def nice_time(time)
+    time = time.in_time_zone(current_user.time_zone) if logged_in? && !current_user.time_zone.nil?
     pretty_time = pretty_timeframes(time)
 
     if pretty_time == ''
