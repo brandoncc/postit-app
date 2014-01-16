@@ -11,7 +11,7 @@ class Category < ActiveRecord::Base
 
     index = 1
 
-    until Category.find_by(slug: potential_slug).nil?
+    until potential_slug == self.slug || Category.find_by(slug: potential_slug).nil?
       if index == 1
         potential_slug += "-#{index}"
       else
