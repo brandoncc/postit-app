@@ -14,7 +14,7 @@
     <% Category.order("lower(name) ASC").all.each do |category| %>
       <li><a href="<%= category_path(category) %>"><%= "#{category.name}" %></a></li>
     <% end %>
-    <% if logged_in? %>
+    <% if admin? %>
       <li class="divider"></li>
       <li><a href="<%= new_category_path %>"><i class="icon-plus"></i> New Category</a></li>
     <% end %>

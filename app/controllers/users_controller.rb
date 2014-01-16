@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_login, except: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update]
-  before_action :require_same_user, only: [:edit, :update]
+  before_action :require_same_user_or_admin, only: [:edit, :update]
 
   def new
     @user = User.new
@@ -44,8 +44,8 @@ class UsersController < ApplicationController
     @user = User.find_by(slug: params[:id])
   end
 
-  def require_same_user
-    unless @user == current_user
+  def require_same_user_or_admin
+    unless @user == current_user || admin?
       flash[:error] = 'You do not have access to that.'
       redirect_to root_path
     end
