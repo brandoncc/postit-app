@@ -17,6 +17,12 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find_by(slug: params[:id])
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @category }
+      format.xml
+    end
   end
 
   private

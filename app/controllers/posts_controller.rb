@@ -5,10 +5,22 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+
+    respond_to do |format|
+      format.html
+      format.xml
+      format.json { render @posts.to_json }
+    end
   end
 
   def show
     @comment = Comment.new if @comment.nil?
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @post.to_json }
+      format.xml
+    end
   end
 
   def new
