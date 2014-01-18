@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html
       format.xml
-      format.json { render @posts.to_json }
+      format.json { render json: @posts }
     end
   end
 
