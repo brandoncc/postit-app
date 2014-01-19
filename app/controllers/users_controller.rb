@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @tab  = params[:tab].nil? ? 'posts' : 'comments'
+    @tab = params[:tab].nil? ? 'posts' : 'comments'
   end
 
   private
@@ -42,6 +42,11 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find_by(slug: params[:id])
+
+    if @user.nil?
+      flash[:error] = 'That user was not found.'
+      redirect_to root_path
+    end
   end
 
   def require_same_user_or_admin
