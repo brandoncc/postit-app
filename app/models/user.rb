@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  include Sluggable
+  include SluggableBrandon
 
   has_many :posts
   has_many :comments
