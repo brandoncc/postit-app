@@ -7,7 +7,7 @@
       <% end %>
       <br/>
     <% end %>
-    <span id="post_<%= post.id %>_votes"><%= pretty_votes(post) %></span>
+    <span id="post_<%= post.to_param %>_votes"><%= pretty_votes(post) %></span>
     <% if logged_in? %>
       <br/>
       <%= link_to vote_post_path(post, upvote: false),

@@ -33,7 +33,7 @@ class PostsController < ApplicationController
 
     if @post.save
       flash[:notice] = 'Your post was created successfully.'
-      redirect_to post_path(@post.id)
+      redirect_to post_path(@post)
     else
       render :new
     end
