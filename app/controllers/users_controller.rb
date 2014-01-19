@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:username, :password, :password_confirmation, :time_zone)
+    params.require(:user).permit(:username, :password, :password_confirmation, :time_zone, :phone)
   end
 
   def set_user
@@ -45,9 +45,6 @@ class UsersController < ApplicationController
   end
 
   def require_same_user_or_admin
-    unless @user == current_user || admin?
-      flash[:error] = 'You do not have access to that.'
-      redirect_to root_path
-    end
+    access_denied unless @user == current_user || admin?
   end
 end

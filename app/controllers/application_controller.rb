@@ -20,4 +20,9 @@ class ApplicationController < ActionController::Base
   def admin?
     logged_in? && current_user.role == 'admin'
   end
+
+  def access_denied
+    flash[:error] = 'You do not have access to that.'
+    redirect_to root_path
+  end
 end
