@@ -3,6 +3,12 @@
   <dl class="dl-horizontal">
     <dt>Username:</dt>
     <dd><%= @user.username %></dd>
+    <dt>Time zone:</dt>
+    <dd><%= @user.time_zone %></dd>
+    <% if current_user == @user %>
+      <dt>Phone number:</dt>
+      <dd><%= @user.phone %></dd>
+    <% end %>
   </dl>
 </div>
 <h5><%= @user.username %>'s activity</h5>
