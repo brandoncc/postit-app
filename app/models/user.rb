@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
   validates :password, presence: true, confirmation: true, length: { minimum: 5 }, on: :create
 
+  sluggable_column :username
+  before_save :generate_slug!
+
   def two_factor?
     !self.phone.blank?
   end

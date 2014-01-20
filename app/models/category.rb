@@ -5,4 +5,7 @@ class Category < ActiveRecord::Base
   has_many :posts, through: :post_categories
 
   validates_presence_of :name
+
+  sluggable_column :name
+  before_save :generate_slug!
 end

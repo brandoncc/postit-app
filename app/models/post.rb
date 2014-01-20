@@ -8,4 +8,12 @@ class Post < ActiveRecord::Base
   has_many :categories, through: :post_categories
 
   validates_presence_of :title, :url, :description
+
+  sluggable_column :title
+  after_create :generate_slug!
+
+  def generate_slug!
+    super
+    self.save
+  end
 end
