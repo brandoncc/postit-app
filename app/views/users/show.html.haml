@@ -1,0 +1,23 @@
+= render 'shared/content_title', title: "Profile: #{@user.username}"
+
+.well
+  %dl.dl-horizontal
+    %dt Username:
+    %dd= @user.username
+    %dt Time zone:
+    %dd= @user.time_zone
+    - if current_user == @user
+      %dt Phone number:
+      %dd @user.phone
+%h5 "#{@user.username}'s activity"
+%div
+  %ul.nav.nav-tabs
+    %li{class: @tab == 'posts' && 'active'}
+      = link_to "Posts (#{@user.posts.count})", user_path(@user)
+    %li{class: @tab == 'comments' && 'active'}
+      = link_to "Comments (#{@user.comments.count})", user_path(@user, tab: 'comments')
+
+  - if @tab == 'comments'
+    = render partial: 'comments/show', collection: @user.comments, as: :comment, locals: {show_post_link: true}
+  - else
+    = render partial: 'shared/post', collection: @user.posts, as: :post
