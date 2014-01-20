@@ -38,12 +38,6 @@ class SessionsController < ApplicationController
     end
   end
 
-  def login_user!(user)
-    session[:user_id] = user.id
-    flash[:notice] = 'You were logged in successfully.'
-    redirect_to root_path
-  end
-
   def destroy
     session.delete(:user_id)
     flash[:notice] = 'You were logged out successfully.'

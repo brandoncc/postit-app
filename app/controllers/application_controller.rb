@@ -25,4 +25,10 @@ class ApplicationController < ActionController::Base
     flash[:error] = 'You do not have access to that.'
     redirect_to root_path
   end
+
+  def login_user!(user)
+    session[:user_id] = user.id
+    flash[:notice] = 'You were logged in successfully.'
+    redirect_to root_path
+  end
 end
