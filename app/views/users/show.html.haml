@@ -8,8 +8,8 @@
     %dd= @user.time_zone
     - if current_user == @user
       %dt Phone number:
-      %dd @user.phone
-%h5 "#{@user.username}'s activity"
+      %dd #{@user.phone.blank? ? 'Not set' : @user.phone}
+%h5 #{@user.username}'s activity
 %div
   %ul.nav.nav-tabs
     %li{class: @tab == 'posts' && 'active'}
