@@ -9,7 +9,7 @@ gem 'bootstrap-sass', '~> 2.3.2.0'
 gem 'voteable_brandon'
 gem 'sluggable_brandon'
 gem 'twilio-ruby'
-gem 'haml'
+gem 'haml-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
